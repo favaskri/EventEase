@@ -5,15 +5,15 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">Event<em>Ease</em></a>
+                    <a href="{% url 'index' %}" class="logo">Event<em>Ease</em></a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="rent-venue.html">Rent Venue</a></li>
-                        <li><a href="shows-events.html">Shows & Events</a></li> 
-                        <li><a href="tickets.html">Tickets</a></li> 
+                        <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                        <li><a href="">About Us</a></li>
+                        <li><a href="{% url 'rent_venue' %}">Rent Venue</a></li>
+                        <li><a href="{% url 'event_list' %}">Shows & Events</a></li> 
+                        <li><a href="{% url 'tickets' %}">Tickets</a></li> 
                     </ul>        
                     <a class='menu-trigger'>
                         <span>Menu</span>
