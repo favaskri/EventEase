@@ -1,434 +1,149 @@
 {% load static %}
-
-<div class="shows-events-tabs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-                    <div class="col-lg-12">
-                        <div class="heading-tabs">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-                                      <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tabs-1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a href="#tabs-1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Upcoming</a></li>
-                                      <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-2" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="#tabs-2" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Past</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4">
-                                      <div class="main-dark-button">
-                                          <a href="ticket-details.html">Purchase Tickets</a>
-                                      </div>
-                                </div>
-                            </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="section-heading">
+            <h2>Event Listing</h2>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <ul>
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="title">
+                            <h4>Sunny Hill Festival</h4>
+                            <span>140 Tickets Available</span>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <section class="tabs-content">
-                            <article id="tabs-1" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="heading"><h2>Upcoming</h2></div>
-                                    </div>
-                                    
-                                    <div class="col-lg-9">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Tiger Land Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="{% url 'purchase_tickets' %}">Purchase Tickets</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-01.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>Sep 24 Friday<br>11:20 AM - 10:20 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>540 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Super Rock Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="{% url 'purchase_tickets' %}">Purchase Tickets</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-02.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>Oct 22 Saturday<br>10:00 AM - 09:00 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>480 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Rocky Hill Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-03.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>Nov 12 Friday<br>11:00 AM - 11:00 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>908Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>920 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Hip Hop Special</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-04.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>Nov 18 Sunday<br>08:00 AM - 09:00 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>785 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="pagination">
-                                                    <ul>
-                                                        <li><a href="#">Prev</a></li>
-                                                        <li><a href="#">1</a></li>
-                                                        <li class="active"><a href="#">2</a></li>
-                                                        <li><a href="#">3</a></li>
-                                                        <li><a href="#">Next</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>                            
-                            <article id="tabs-2" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="heading"><h2>Upcoming</h2></div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="sidebar">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="heading-sidebar">
-                                                        <h4>Sort The Upcoming Shows &amp; Events By:</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="month">
-                                                        <h6>Month</h6>
-                                                        <ul>
-                                                            <li><a href="#">July</a></li>
-                                                            <li><a href="#">August</a></li>
-                                                            <li><a href="#">September</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="category">
-                                                        <h6>Category</h6>
-                                                        <ul>
-                                                            <li><a href="#">Pop Music</a></li>
-                                                            <li><a href="#">Rock Music</a></li>
-                                                            <li><a href="#">Hip Hop Music</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="venues">
-                                                        <h6>Venues</h6>
-                                                        <ul>
-                                                            <li><a href="#">Radio City Musical Hall</a></li>
-                                                            <li><a href="#">Madison Square Garden</a></li>
-                                                            <li><a href="#">Royce Hall</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Water Splash Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-04.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>April 24 Friday<br>12:00 AM - 12:00 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>528 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Sunny Hill Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-03.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>May 31 Friday<br>10:00 AM - 11:00 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>240 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>New Rock Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-02.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>June 12 Friday<br>09:00 AM - 09:00 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>360 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="event-item">
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="left-content">
-                                                                <h4>Monkey Dance Festival</h4>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
-                                                                <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="thumb">
-                                                                <img src="{%  static 'images/event-page-01.jpg' %}" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="right-content">
-                                                                <ul>
-                                                                    <li>
-                                                                        <i class="fa fa-clock-o"></i>
-                                                                        <h6>July 14 Friday<br>08:30 AM - 09:30 PM</h6>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-map-marker"></i>
-                                                                        <span>Copacabana Beach, Rio de Janeiro</span>
-                                                                    </li>
-                                                                    <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>450 Total Guests Attending</span>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="pagination">
-                                                    <ul>
-                                                        <li><a href="#">Prev</a></li>
-                                                        <li><a href="#">1</a></li>
-                                                        <li class="active"><a href="#">2</a></li>
-                                                        <li><a href="#">3</a></li>
-                                                        <li><a href="#">Next</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>    
-                        </section>
+                    <div class="col-lg-3">
+                        <div class="time"><span><i class="fa fa-clock-o"></i> Sep 16, 2021<br>18:00 to 22:00</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="place"><span><i class="fa fa-map-marker"></i>Copacabana Beach, <br>Rio de Janeiro</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="main-dark-button">
+                            <a href="ticket-details.html">Purchase Tickets</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="title">
+                            <h4>Gala Rock Festival</h4>
+                            <span>128 Tickets Available</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="time"><span><i class="fa fa-clock-o"></i> Sep 18, 2021<br>18:00 to 22:00</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="place"><span><i class="fa fa-map-marker"></i>Copacabana Beach, <br>Rio de Janeiro</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="main-dark-button">
+                            <a href="ticket-details.html">Purchase Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="title">
+                            <h4>Hip Hop Farm</h4>
+                            <span>160 Tickets Available</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="time"><span><i class="fa fa-clock-o"></i> Sep 20, 2021<br>18:00 to 22:00</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="place"><span><i class="fa fa-map-marker"></i>Copacabana Beach, <br>Rio de Janeiro</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="main-dark-button">
+                            <a href="ticket-details.html">Purchase Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="title">
+                            <h4>Balada Music</h4>
+                            <span>240 Tickets Available</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="time"><span><i class="fa fa-clock-o"></i> Oct 14, 2021<br>18:00 to 22:00</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="place"><span><i class="fa fa-map-marker"></i>Copacabana Beach, <br>Rio de Janeiro</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="main-dark-button">
+                            <a href="ticket-details.html">Purchase Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="title">
+                            <h4>Beerland Festival</h4>
+                            <span>360 Tickets Available</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="time"><span><i class="fa fa-clock-o"></i> Oct 20, 2021<br>18:00 to 22:00</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="place"><span><i class="fa fa-map-marker"></i>Copacabana Beach, <br>Rio de Janeiro</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="main-dark-button">
+                            <a href="ticket-details.html">Purchase Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="title">
+                            <h4>Bump &amp; Bass</h4>
+                            <span>168 Tickets Available</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="time"><span><i class="fa fa-clock-o"></i> Oct 22, 2021<br>18:00 to 22:00</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="place"><span><i class="fa fa-map-marker"></i>Copacabana Beach, <br>Rio de Janeiro</span></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="main-dark-button">
+                            <a href="ticket-details.html">Purchase Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-12">
+        <div class="pagination">
+            <ul>
+                <li><a href="#">Prev</a></li>
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
         </div>
     </div>
 </div>
-
-
-
-
-
-  
-  
-  <!-- Global Init -->
-  <script src="{% static 'js/custom.js' %}"></script>
-
-  <script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
-
-    <!-- Bootstrap -->
-    <script src="{% static 'js/popper.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-    <!-- Plugins -->
-    <script src="{% static 'js/scrollreveal.min.js' %}"></script>
-    <script src="{% static 'js/waypoints.min.js' %}"></script>
-    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
-    <script src="{% static 'js/imgfix.min.js' %}"></script> 
-    <script src="{% static 'js/mixitup.js' %}"></script> 
-    <script src="{% static 'js/accordions.js' %}"></script>
-    <script src="{% static 'js/owl-carousel.js' %}"></script>
-    
-    <!-- Global Init -->
-    <script src="{% static 'js/custom.js' %}"></script>

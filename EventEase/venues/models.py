@@ -20,3 +20,10 @@ class EventVenue(models.Model):
 
     def __str__(self):
         return f"{self.venue.name} - {self.event.title}"
+from django.db import models
+from events.models import Event
+from users.models import User
+
+
+
+    

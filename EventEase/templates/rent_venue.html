@@ -1,131 +1,95 @@
 {% load static %}
 
-<div class="rent-venue-tabs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-                    <div class="col-lg-12">
-                        
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <section class="tabs-content">
-                            <article id="tabs-1" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <div class="right-content">
-                                            <h4>Madison Square Garden</h4>
-                                            <p>ArtXibition Event Template is brought to you by Tooplate website and it included total 7 HTML pages. 
-                    These are <a href="index.html">Homepage</a>, <a href="about.html">About</a>, 
-                    <a href="rent-venue.html">Rent a venue</a>, <a href="shows-events.html">shows &amp; events</a>, 
-                    <a href="event-details.html">event details</a>, <a href="tickets.html">tickets</a>, and <a href="ticket-details.html">ticket details</a>. 
-                    You can feel free to modify any page as you like. If you have any question, please visit our <a href="https://www.tooplate.com/contact" target="_blank">Contact page</a>.
-                    
-                    <br><br>If you need the latest HTML templates, you may visit <a href="https://www.toocss.com/" target="_blank">Too CSS</a> website that features a great collection of templates in different categories.</p>
-                                            <ul class="list">
-                                                <li>Madison Square Garden</li>
-                                                <li>$2,840 per day</li>
-                                                <li>860 Guests</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div id="map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7405.690436500271!2d-43.289281240686606!3d-23.00173786750551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd6d13e950037%3A0x2c49dc1b12837f3f!2sPedra%20da%20G%C3%A1vea!5e1!3m2!1sen!2sth!4v1630941277488!5m2!1sen!2sth" width="100%" height="240px" frameborder="0" style="border:0" allowfullscreen="" loading="lazy"></iframe>
-                                            <h5>Any Question?</h5>
-                                            <p>Tumeric air affogato sare torial waistcoat denim stumber.</p>
-                                        <div class="text-button">
-                                            <a href="ticket-details.html">Need Direction? <i class="fa fa-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div></article>                            
-                            <article id="tabs-2" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-                                
-                            </div></article>   
-                            <article id="tabs-3" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <div class="right-content">
-                                            <h2> Account Setup</h2>
-                                            <p> Please fill in the below details so that we can setup an account for your organisation in our system and 
-                                                give you access to the Do-It-Yourself portal for listing your event. </p>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div></article>    
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="rent-venue-application">
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-                
                 <div class="contact-form">
-                    <form id="contact" action="" method="post">
-                      <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="name" type="text" id="name" placeholder="Your Name*" required="">
-                          </fieldset>
+                    <h2 class="heading-text">Account Setup or Login</h2>
+                    <div >
+
+
+                    <!-- Toggle for registration and login forms -->
+                    <div class="contact-form">
+                        <button onclick="toggleForm('registerForm')">Register</button>
+                        <button onclick="toggleForm('loginForm')">Login</button>
+                    </div>
+                    <p>Please fill in the details  to set up an account, or login if you already have an account.</p>
+                  </div>
+                    <!-- Registration Form -->
+                    <form id="registerForm" action="" method="post" style="display: block;">
+                        {% csrf_token %}
+                        <h3 class="heading-text">Register</h3>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="username" type="text" placeholder="Username*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="email" type="email" placeholder="Your Email*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="phone_number" type="text" placeholder="Phone Number*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="company_organization" type="text" placeholder="Company / Organization*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="password" type="password" placeholder="Password*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="confirm_password" type="password" placeholder="Confirm Password*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <button type="submit" class="main-dark-button">SignUp</button>
+                                </fieldset>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email*" required="">
-                          </fieldset>
+                    </form>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" action="" method="post" style="display: none;">
+                        {% csrf_token %}
+                        <h3>Login</h3>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="username" type="text" placeholder="Username*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <fieldset>
+                                    <input name="password" type="password" placeholder="Password*" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <button type="submit" class="main-dark-button">Login</button>
+                                </fieldset>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="phone-number" type="text" id="phone-number" placeholder="Phone Number*" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="company-organization" type="text" id="company-organization" placeholder="Company / Organization*" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="venue-requested" type="text" id="venue-requested" placeholder="Venue Requested*" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="type-event" type="text" id="type-event" placeholder="Type Of Event*" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="date-requested-first" type="text" id="date-requested-first" placeholder="Date Requested (Primary Date)*" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                          <fieldset>
-                            <input name="date-requested-second" type="text" id="date-requested-second" placeholder="Date Requested (Secondary Date)*" required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                          <fieldset>
-                            <textarea name="about-event-hosting" rows="6" id="about-event-hosting" placeholder="About The Event You Are Hosting" required=""></textarea>
-                          </fieldset>
-                        </div>
-                        <div class="col-lg-12">
-                          <fieldset>
-                            <button type="submit" id="form-submit" class="main-dark-button">Submit Request</button>
-                          </fieldset>
-                        </div>
-                      </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+function toggleForm(formId) {
+    document.getElementById('registerForm').style.display = formId === 'registerForm' ? 'block' : 'none';
+    document.getElementById('loginForm').style.display = formId === 'loginForm' ? 'block' : 'none';
+}
+</script>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Registration  # Import the registration model
+# from .models import VenueRequest  # Import the  model
 
-# Register the registration model with the admin site
-admin.site.register(Registration)
+# # Register the registration model with the admin site
+# admin.site.register(VenueRequest)
