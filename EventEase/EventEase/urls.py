@@ -8,7 +8,8 @@ urlpatterns = [
     path('',include('events.urls')),
     path('venues/',include('venues.urls')),
      path('tickets/',include('tickets.urls')),
-     path('registrations/',include('registrations.urls'))
+     path('registrations/',include('registrations.urls')),
+      path('accounts/', include('django.contrib.auth.urls'))
     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

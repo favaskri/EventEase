@@ -10,15 +10,17 @@ class Event(models.Model):
     location = models.CharField(max_length=255)
     organizer = models.ForeignKey(Profile, on_delete=models.CASCADE, limit_choices_to={'user_type': 'organizer'})
     is_active = models.BooleanField(default=True)
+    capacity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
 
-class Schedule(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+ 
+    
 
-    def __str__(self):
-        return f"{self.title} - {self.event.title}"
+
+
+
+
+    
+

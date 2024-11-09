@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Link to your CSS file if you have one -->
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        {% if form.errors %}
+            <p class="error-message">Invalid username or password. Please try again.</p>
+        {% endif %}
+        
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username:</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password:</label>
+                {{ form.password }}
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        
+        <p>Don’t have an account? <a href="{% url 'register' %}">Sign up here</a>.</p> <!-- Adjust if you have a registration URL -->
+    </div>
+</body>
+</html>
