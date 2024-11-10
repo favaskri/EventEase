@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from registrations.models import VenueRequest
 from .forms import EventForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views as auth_views
+
 
 
 
@@ -11,7 +11,7 @@ from django.contrib.auth import views as auth_views
 def index(request):
     return render(request,'index.html')
 
-@login_required
+# @login_required
 def create_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -23,7 +23,7 @@ def create_event(request):
         form = EventForm()  # Initialize an empty form on GET request
 
     # Render the form, with validation errors if POST data was invalid
-    return render(request, 'rent_venue.html', {'form': form})
+    return render(request, 'rent_venue_layout.html', {'form': form})
 
 def event_display(request):
     # Retrieve all venue requests (events) from the database
@@ -32,8 +32,7 @@ def event_display(request):
     return render(request,'event_display_layout.html', {'venue_requests': venue_requests})
 
 
-class CustomLoginView(auth_views.LoginView):
-    template_name = 'login.html'  #
+
 
 
 

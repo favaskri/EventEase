@@ -1,0 +1,29 @@
+{% extends 'blank_layout.html' %}
+{% load static %}
+
+{% block header %}
+    {% include 'header.html' %}
+{% endblock header %}
+
+
+{% block registration %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/reg_style.css' %}">  <!-- Link to your CSS file if you have one -->
+</head>
+<div class="center-content">
+    <div class="login-container">
+        <h2>Register</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renders the form fields: username, email, password1, password2 -->
+            <button type="submit">Register</button>
+        </form>
+        <p class="redirect-link">
+            Already have an account? <a href="{% url 'login' %}">Login here</a>
+        </p>
+    </div>
+</div>
+{% endblock registration %}
