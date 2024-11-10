@@ -6,8 +6,9 @@ urlpatterns = [
     
     
     path('register/', views.register, name='login_registration'),  # User registration page
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),  # Login page
-    path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),  # Logout, redirects to homepage
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', views.custom_logout, name='logout')  
+      # Logout, redirects to homepage
 
     
 ]

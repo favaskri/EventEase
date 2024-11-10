@@ -13,9 +13,16 @@
                         <li><a href="{% url 'display_event' %}">Shows & Events</a></li> 
                         <li><a href="{% url 'create_event' %}">Rent Venue</a></li>
                         <li><a href="{% url 'tickets' %}">Tickets</a></li> 
-                        <li><a href="{% url 'login' %}">Login</a></li>
+
+                        <!-- Conditional display of Login/Logout and username -->
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            <li><a href="#">{{ user.username }}</a></li> <!-- Displays the logged-in user's username -->
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                        {% endif %}
                     </ul>        
-                    <a class='menu-trigger'>
+                    <a class="menu-trigger">
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->

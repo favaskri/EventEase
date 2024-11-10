@@ -15,3 +15,7 @@
     text-decoration: underline; /* Add underline on hover for better UX */
 }
 
+.login-container{
+    margin: 50px;
+}
+

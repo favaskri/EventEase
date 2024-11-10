@@ -16,6 +16,13 @@
 <div class="center-content">
     <div class="login-container">
         <h2>Register</h2>
+        {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
         <form method="post" action="">
             {% csrf_token %}
             {{ form.as_p }}  <!-- Renders the form fields: username, email, password1, password2 -->
