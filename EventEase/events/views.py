@@ -58,13 +58,21 @@ def update_event(request,pk):
 
     return render(request, 'update_event_layout.html', {'form': form})
 
+
+
 def delete_event(request,pk):
-    event=get_object_or_404(Event,pk=pk)
+    # Retrieve all venue requests (events) from the database
+    user=request.user
+    profile  =Profile.objects.get(user=user)
+    event=get_object_or_404(Event,pk=pk,user=profile)
+    
+    
     if request.method == 'POST':
         event.delete()
+        print(event_list)
         return redirect('event_list')
-                   
-    return render(request, 'update_event_layout.html',{'event':event})
-
+      
+    return redirect('event_list')
+    
 
 

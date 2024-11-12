@@ -25,13 +25,16 @@
                         <div class="place"><span><i class="fa fa-map-marker"></i>{{ event.location }}, <br>Rio de Janeiro</span></div>
                     </div>
                     <div class="col-lg-3">
+                       
                         <span><div class="btn btn-light">
                             <a href="{% url 'update_event' event.pk %}">Update </a>
                             
-                            
+                        <form method="post" action="{% url 'delete_event' event.pk %}">
+                        {% csrf_token %}   
                         </div></span><span><div class="btn btn-light">
-                            <a href="{% url 'delete_event' event.pk %}">Remove </a>
-                            
+                            <button type=" submit" class="btn btn-light">Remove</button>
+                           
+                        </form>  
                             
                         </div></span>
                         
