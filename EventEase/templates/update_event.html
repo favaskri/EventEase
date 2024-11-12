@@ -1,0 +1,52 @@
+
+{% load static %}
+
+<div class="rent-venue-tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+                    <div class="col-lg-12">
+                        
+                        
+                    
+                      
+                        <article id="tabs-3" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="right-content">
+                                            <h2> Account Setup</h2>
+                                            <p> Please fill in the below details so that we can setup an account for your organisation in our system and 
+                                                give you access to the Do-It-Yourself portal for listing your event. </p>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            
+                          </div></article>    
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rent-venue-application">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                
+              <div class="contact-form">
+                  
+                <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Create Event</button>
+                </form>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
