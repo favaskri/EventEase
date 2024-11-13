@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Event,Profile
 from .forms import EventForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 
 
 
@@ -29,10 +31,22 @@ def create_event(request):
     return render(request, 'create_event_layout.html', {'form': form})
 
     
+
+
+
 def event_display(request):
     event_requests = Event.objects.all()
-    print(event_requests)
-    return render(request,'event_display_layout.html', {'event_requests': event_requests})
+    paginator = Paginator(event_requests,4)  # 4 events per page
+
+    page_number = request.GET.get('page')
+    try:
+        events_page = paginator.get_page(page_number)  # Get the current page's events
+    except PageNotAnInteger:
+        events_page = paginator.get_page(1)  # If page is not an integer, show the first page
+    except EmptyPage:
+        events_page = paginator.get_page(paginator.num_pages)  # If out of range, show the last page
+
+    return render(request, 'event_display_layout.html', {'event_requests': events_page})
 
 
 @login_required
@@ -61,7 +75,7 @@ def update_event(request,pk):
 
 
 def delete_event(request,pk):
-    # Retrieve all venue requests (events) from the database
+     
     user=request.user
     profile  =Profile.objects.get(user=user)
     event=get_object_or_404(Event,pk=pk,user=profile)

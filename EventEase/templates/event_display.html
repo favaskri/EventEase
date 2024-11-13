@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <div class="shows-events-tabs">
     <div class="col-lg-12">
         <div class="heading-tabs">
@@ -15,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    
         <div class="row">
             {% for event in event_requests %}
             <div class="col-lg-12">
@@ -58,15 +59,14 @@
                                                                 <ul>
                                                                     <li>
                                                                         <i class="fa fa-clock-o"></i>
-                                                                        <h6>{{ event.date_from|date:"M d l" }}<br>{{ event.date_from|time:"h:i A" }} - {{ event.date_to|time:"h:i A" }}</h6>
+                                                                        <h6>{{ event.date|date:"F j, Y" }}<br>{{ event.time|date:"h:i A" }}</h6>
                                                                     </li>
                                                                     <li>
                                                                         <i class="fa fa-map-marker"></i>
                                                                         <span>{{ event.location }}</span>
                                                                     </li>
                                                                     <li>
-                                                                        <i class="fa fa-users"></i>
-              {{event.capacity}}                                                          <span>Total Guests Attending</span>
+                                                                        <i class="fa fa-users"></i> {{event.capacity}} <span>Total Guests Attending</span>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -292,10 +292,44 @@
            
             </div>
             {% endfor %}
-
+            
+                
+            
         </div>
+    <div class="shows-events-schedule">
+        
 
+        <div class="col-lg-12">
+            <div class="pagination">
+                {% if event_requests.has_previous %}
+                <ul>
+                   <li> <a href="?page={{ event_requests.previous_page_number }}">Prev</a></li>
+                </ul>
+                {% endif %}
+        
+                {% for i in event_requests.paginator.page_range %}
+                    {% if event_requests.number == i %}
+                    <ul>
+                      <li class="active"> <a href="?page={{ i }}" >{{ i }}</a></li> 
+                    </ul>
+                    {% else %}
+                <ul>
+                    <li>  <a href="?page={{ i }}">{{ i }}</a></li> 
+                </ul>
+                    {% endif %}
+                {% endfor %}
+        
+                {% if event_requests.has_next %}
+            <ul>
+                <li>  <a href="?page={{ event_requests.next_page_number }}">Next</a></li> 
+            </ul>
+                {% endif %}
+            </div>
+        </div>
+        
     </div>
+    
+    
 </div>
 
 
@@ -324,3 +358,5 @@
     
     <!-- Global Init -->
     <script src="{% static 'js/custom.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+    <script src="{% static 'js/pagination.js' %}"></script>
