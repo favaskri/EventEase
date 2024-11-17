@@ -47,13 +47,31 @@
     </div>
     <div class="col-lg-12">
         <div class="pagination">
+            
+            
+            {% if event_list.has_previous %}
             <ul>
-                <li><a href="#">Prev</a></li>
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">Next</a></li>
+               <li> <a href="?page={{ event_list.previous_page_number }}">Prev</a></li>
             </ul>
+            {% endif %}
+                {% for i in event_list.paginator.page_range %}
+                {% if event_list.number == i %} 
+                <ul>
+                <li><a class="active" href="?page={{ i }}">{{i}}</a></li>
+                </ul>  
+                {% else%}
+                <ul>
+                <li ><a href="?page={{ i }}">{{i}}</a></li>
+                </ul>
+                {% endif%}
+                {% endfor %}
+                
+                {% if event_list.has_next %}
+                <ul>
+                    <li>  <a href="?page={{ event_list.next_page_number }}">Next</a></li> 
+                </ul>
+                {% endif %}
+            
         </div>
     </div>
 </div>
