@@ -1,4 +1,5 @@
 {% load static %}
+{% load calculate_total %}
 <body>
     
     <div class="ticket-details-page">
@@ -23,15 +24,32 @@
                                 <h6>Standard Ticket</h6>
                                 <p>${{event_ticket.ticket_price}} per ticket</p>
                             </div>
-                            <div class="right-content">
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus">
+                            <form method="post" action="{% url 'purchase_tickets' event_ticket.pk %}">
+                                {% csrf_token %}
+                            
+                                <div class="right-content">
+                                    <div class="quantity buttons_added">
+                                        <input type="button" value="-" class="minus" onclick="changeQuantity(-1)">
+                                        <input type="number" 
+                                               id="quantity" 
+                                               step="1" 
+                                               min="1" 
+                                               max="10" 
+                                               name="quantity" 
+                                               value="{{ quantity|default:1 }}" 
+                                               title="Qty" 
+                                               class="input-text qty text" 
+                                               onchange="this.form.submit()">
+                                        <input type="button" value="+" class="plus" onclick="changeQuantity(1)">
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+                            
                         </div>
                         <div class="total">
-                            <h4>Total: ${{event_ticket.ticket_price}}</h4>
-                            <div class="main-dark-button"><a href="#">Purchase Tickets</a></div>
+
+                            <h4>Total: ${% calculate_total event_ticket.ticket_price quantity|default:1  %}</h4>
+                            <div class="main-dark-button"><a href="{% url 'ticket_success' event_ticket.pk %}">Purchase Tickets</a></div>
                         </div>
                         <div class="warn">
                             <p>*You Can Only Buy 10 Tickets For This Show</p>
@@ -44,8 +62,36 @@
     </div>
 
 
+
+<script>
+    function changeQuantity(change) {
+        // Get the quantity input element
+        const quantityInput = document.getElementById('quantity');
+        
+        // Parse the current value
+        let currentValue = parseInt(quantityInput.value);
+    
+        // Calculate the new value
+        let newValue = currentValue + change;
+    
+        // Ensure the value stays within the min and max bounds
+        if (newValue < parseInt(quantityInput.min)) {
+            newValue = parseInt(quantityInput.min);
+        } else if (newValue > parseInt(quantityInput.max)) {
+            newValue = parseInt(quantityInput.max);
+        }
+    
+        // Set the new value
+        quantityInput.value = newValue;
+    
+        // Trigger the form submission
+        quantityInput.form.submit();
+    }
     
 
+
+    
+</script>
     
     
     
