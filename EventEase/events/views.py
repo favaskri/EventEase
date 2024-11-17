@@ -55,18 +55,8 @@ def event_list(request):
     user=request.user
     profile , created =Profile.objects.get_or_create(user=user)
     event_list = Event.objects.filter(user=profile)
-    paginator=Paginator(event_list,3)
-
-    page_number = request.GET.get('page')
-    try:
-        events_page = paginator.get_page(page_number)  
-    except PageNotAnInteger:
-        events_page = paginator.get_page(1)  
-    except EmptyPage:
-        events_page = paginator.get_page(paginator.num_pages) 
-
     print(event_list)
-    return render(request,'event_list_layout.html',{'event_list':events_page})
+    return render(request,'event_list_layout.html',{'event_list':event_list})
 
 def update_event(request,pk):
     event=get_object_or_404(Event,pk=pk)
