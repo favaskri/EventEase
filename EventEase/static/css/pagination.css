@@ -1,0 +1,96 @@
+/* Center the nav in the viewport */
+*,*::before,*::after{box-sizing:border-box}body{width:100vw;height:100vh;margin:0;padding:0}main{padding:40px;display:flex;height:100vh;width:100vw;flex-direction:row;align-items:center;justify-content:center}
+/* Load a nicer font than system */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+.pagination {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    height: 40px;
+    font-family: 'Inter', sans-serif;
+    color: #6b7280;
+    justify-content: space-between;
+    border-top: 1px solid #e5e7eb;
+}
+
+.pagination > a:last-of-type {
+    text-align: right;
+}
+
+.pagination a, .pagination .dots {
+    color: #9ca3af;
+    display: block;
+    padding: 16px 16px 0;
+    text-decoration: none;
+    margin-top: -1px;
+    border-top: 2px solid transparent;
+}
+
+.pagination .dots {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.pagination a:hover {
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+.pagination a:active,
+.pagination a.current {
+    border-color: #f59e0b;
+    color: #374151;
+}
+
+.pagination > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pagination > a:first-of-type {
+    padding: 16px 4px 0 0;
+}
+
+.pagination > a:last-of-type {
+    padding: 16px 0 0 4px;
+}
+
+.pagination > a > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.pagination > a:first-of-type > svg {
+    margin-right: 20px;
+}
+
+.pagination > a:last-of-type > svg {
+    margin-left: 20px;
+}
+
+.pagination > a.next > svg {
+    transform: scaleX(-1);
+}
+
+.pagination .pages {
+    display: flex;
+    width: 50%;
+    max-width: 300px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    justify-content: space-evenly;
+}
+
+@media (max-width: 735px) {
+    .pagination .pages {
+        display: none;
+    }
+}
+
+.page {
+    
+}

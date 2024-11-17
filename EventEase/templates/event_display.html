@@ -1,9 +1,24 @@
 {% load static %}
 
+
 <div class="shows-events-tabs">
-    <div class="container">
+    <div class="col-lg-12">
+        <div class="heading-tabs">
+            <div class="row">
+                
+                
+                      <div class="main-dark-button">
+                        {% if user.is_authenticated %}
+                          <a href="{% url 'event_list' %}">Update Event </a>
+                        {% endif %}
+                      </div>
+                
+            </div>
+        </div>
+    </div>
+    
         <div class="row">
-            {% for event in venue_requests %}
+            {% for event in event_requests %}
             <div class="col-lg-12">
                 <div class="row ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
                     <div class="col-lg-12">
@@ -22,30 +37,41 @@
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <div class="left-content">
-                                                                <h4>{{event.venue_requested}}</h4>
-                                                                <p>{{ event.details|truncatewords:15 }}</p>
-                                                                <div class="main-dark-button"><a href="{% url 'purchase_tickets' %}">Purchase Tickets</a></div>
+                                                                <h4>{{event.title}}</h4>
+                                                                <p>{{ event.description|truncatewords:15 }}</p>
+                                                                <form method="post" action="{% url 'purchase_tickets' event.pk %}"  enctype="multipart/form-data">
+                                                                    {% csrf_token %}
+                                                                
+                                                                    <div class="main-dark-button">
+                                                                        <button  type="submit">Purchase Tickets</button>
+                                                                    </div>
+                                                            </form>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
+                                                            {% if event.image and event.image.url %}
                                                             <div class="thumb">
-                                                                <img src="{{ event_images.url }}" alt="Event Image">
+                                                                <img src="{{ event.image.url}}" alt="{{ event.name }}">
                                                             </div>
+                                                            {% else %}
+                                                            <p>No image available.</p>
+                                                            {% endif %}
+
+                                                            
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="right-content">
                                                                 <ul>
                                                                     <li>
                                                                         <i class="fa fa-clock-o"></i>
-                                                                        <h6>{{ event.date_from|date:"M d l" }}<br>{{ event.date_from|time:"h:i A" }} - {{ event.date_to|time:"h:i A" }}</h6>
+                                                                        <h6>{{ event.date|date:"F j, Y" }}<br>{{ event.time|date:"h:i A" }}</h6>
                                                                     </li>
                                                                     <li>
                                                                         <i class="fa fa-map-marker"></i>
-                                                                        <span>{{ event.venue_requested }}</span>
+                                                                        <span>{{ event.location }}</span>
                                                                     </li>
                                                                     <li>
-                                                                        <i class="fa fa-users"></i>
-                                                                        <span>540 Total Guests Attending</span>
+                                                                        <i class="fa fa-users"></i> {{event.capacity}} <span>Total Guests Attending</span>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -271,10 +297,44 @@
            
             </div>
             {% endfor %}
-
+            
+                
+            
         </div>
+    <div class="shows-events-schedule">
+        
 
+        <div class="col-lg-12">
+            <div class="pagination">
+                {% if event_requests.has_previous %}
+                <ul>
+                   <li> <a href="?page={{ event_requests.previous_page_number }}">Prev</a></li>
+                </ul>
+                {% endif %}
+        
+                {% for i in event_requests.paginator.page_range %}
+                    {% if event_requests.number == i %}
+                    <ul>
+                      <li class="active"> <a href="?page={{ i }}" >{{ i }}</a></li> 
+                    </ul>
+                    {% else %}
+                <ul>
+                    <li>  <a href="?page={{ i }}">{{ i }}</a></li> 
+                </ul>
+                    {% endif %}
+                {% endfor %}
+        
+                {% if event_requests.has_next %}
+            <ul>
+                <li>  <a href="?page={{ event_requests.next_page_number }}">Next</a></li> 
+            </ul>
+                {% endif %}
+            </div>
+        </div>
+        
     </div>
+    
+    
 </div>
 
 
@@ -303,3 +363,5 @@
     
     <!-- Global Init -->
     <script src="{% static 'js/custom.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+    <script src="{% static 'js/pagination.js' %}"></script>

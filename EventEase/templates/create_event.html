@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <div class="rent-venue-tabs">
@@ -38,7 +39,7 @@
                 
               <div class="contact-form">
                   
-                <form method="post" action="">
+                <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Create Event</button>

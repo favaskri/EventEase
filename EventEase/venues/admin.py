@@ -1,5 +1,5 @@
-from django.contrib import admin
-from .models import Venue  # Import the venue model
+# from django.contrib import admin
+# from .models import Venue  # Import the venue model
 
 
-admin.site.register(Venue)
+# admin.site.register(Venue)

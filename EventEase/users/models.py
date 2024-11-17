@@ -1,16 +1,10 @@
-from django.contrib.auth.models import User
+# models.py
 from django.db import models
-# Create your models here.
+from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    USER_TYPES = (
-        ('organizer', 'Organizer'),
-        ('attendee', 'Attendee'),
-    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.CharField(max_length=10, choices=USER_TYPES)
-    # Additional profile fields (optional)
-    bio = models.TextField(blank=True, null=True)
+    phone_number = models.CharField(max_length=15,default=0)
 
     def __str__(self):
-        return f"{self.user.username} - {self.user_type}"
+        return self.user.username
