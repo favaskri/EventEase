@@ -1,41 +1,100 @@
-from django.shortcuts import render,redirect
-from registrations.models import VenueRequest
+from django.shortcuts import render,redirect,get_object_or_404
+from .models import Event,Profile
 from .forms import EventForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required,user_passes_test
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseForbidden
+
+
 
 
 
 # Create your views here.
 
+
+def is_admin(user):
+    return user.is_staff
+
 def index(request):
     return render(request,'index.html')
 
 @login_required
+@user_passes_test(is_admin)
 def create_event(request):
     if request.method == 'POST':
-        form = EventForm(request.POST)
+        form = EventForm(request.POST,request.FILES)
         if form.is_valid():
+            event=form.save(commit=False)
+            profile,created=Profile.objects.get_or_create(user=request.user)
+            event.user=profile
             form.save()
-            # Redirect to the event display page or any URL name you have defined for this page
-            return redirect('display_event')  # use the URL name, not the template file name
+           
+            return redirect('display_event') 
     else:
         form = EventForm()  # Initialize an empty form on GET request
 
     # Render the form, with validation errors if POST data was invalid
-    return render(request, 'rent_venue.html', {'form': form})
+    return render(request, 'create_event_layout.html', {'form': form})
+
+    
+
+
 
 def event_display(request):
+    event_requests = Event.objects.all()
+    paginator = Paginator(event_requests,4)  # 4 events per page
+
+    page_number = request.GET.get('page')
+    try:
+        events_page = paginator.get_page(page_number)  # Get the current page's events
+    except PageNotAnInteger:
+        events_page = paginator.get_page(1)  # If page is not an integer, show the first page
+    except EmptyPage:
+        events_page = paginator.get_page(paginator.num_pages)  # If out of range, show the last page
+
+    return render(request, 'event_display_layout.html', {'event_requests': events_page})
+
+
+@login_required
+@user_passes_test(is_admin)
+def event_list(request):
     # Retrieve all venue requests (events) from the database
-    venue_requests = VenueRequest.objects.all()
-    print(venue_requests)
-    return render(request,'event_display_layout.html', {'venue_requests': venue_requests})
+    user=request.user
+    profile , created =Profile.objects.get_or_create(user=user)
+    event_list = Event.objects.filter(user=profile)
+    print(event_list)
+    return render(request,'event_list_layout.html',{'event_list':event_list})
+
+@user_passes_test(is_admin)
+def update_event(request,pk):
+    event=get_object_or_404(Event,pk=pk)
+    if request.method == 'POST':
+        print(event)
+        form = EventForm(request.POST,request.FILES,instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('event_list')
+                   
+    else:
+        form = EventForm(instance=event)  
+
+    return render(request, 'update_event_layout.html', {'form': form})
 
 
-class CustomLoginView(auth_views.LoginView):
-    template_name = 'login.html'  #
-
-
-
+@user_passes_test(is_admin)
+def delete_event(request,pk):
+     
+    user=request.user
+    profile  =Profile.objects.get(user=user)
+    event=get_object_or_404(Event,pk=pk,user=profile)
+    
+    
+    if request.method == 'POST':
+        event.delete()
+        print(event_list)
+        return redirect('event_list')
+      
+    return redirect('event_list')
+    
 
 

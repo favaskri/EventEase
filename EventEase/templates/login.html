@@ -1,15 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+
+{% extends 'blank_layout.html' %}
+{% load static %}
+
+{% block login %}
+{% load static %}
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="{% url 'index' %}" class="logo">Event<em>Ease</em></a>
+                    <ul class="nav">
+                        <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                        <li><a href="{% url 'display_event' %}">Shows & Events</a></li> 
+                        <li><a href="{% url 'create_event' %}">Plan Event</a></li>
+                        <li><a href="{% url 'tickets' %}">Tickets</a></li> 
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Link to your CSS file if you have one -->
+    <link rel="stylesheet" href="{% static 'css/login_style.css' %}">  <!-- Link to your CSS file if you have one -->
 </head>
-<body>
+<!-- Centered Login Content Wrapper -->
+<div class="center-content">
     <div class="login-container">
         <h2>Login</h2>
-        
         {% if form.errors %}
             <p class="error-message">Invalid username or password. Please try again.</p>
         {% endif %}
@@ -27,7 +55,16 @@
             <button type="submit">Login</button>
         </form>
         
-        <p>Don’t have an account? <a href="{% url 'register' %}">Sign up here</a>.</p> <!-- Adjust if you have a registration URL -->
+        <p>Don’t have an account? <a href="{% url 'login_registration' %}">Sign up here</a>.</p>
+        <!-- Your login form here -->
     </div>
-</body>
-</html>
+</div>
+
+
+
+
+
+{% endblock login %}
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock footer %}

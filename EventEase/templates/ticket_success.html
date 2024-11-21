@@ -1,0 +1,28 @@
+{% extends 'blank_layout.html' %}
+{% load static %}
+{% block header%}
+{% include 'header.html' %}
+{% endblock header%}
+
+{% block success %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Purchase Successful</title>
+</head>
+<body>
+    <h1 style="text-align: center; color: green;;">Purchase Successful!</h1>
+    <h3 style="text-align: center; color: rgb(222, 87, 87);">Your ticket ID is: {{ ticket_id }}</h3>
+</body>
+</html>
+
+
+
+
+
+{% endblock success %}
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock footer %}
