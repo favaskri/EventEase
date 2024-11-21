@@ -15,6 +15,7 @@ from django.http import HttpResponseForbidden
 def is_admin(user):
     return user.is_staff
 
+
 def index(request):
     return render(request,'index.html')
 
@@ -61,7 +62,8 @@ def event_list(request):
     # Retrieve all venue requests (events) from the database
     user=request.user
     profile , created =Profile.objects.get_or_create(user=user)
-    event_list = Event.objects.filter(user=profile)
+    # event_list = Event.objects.filter(user=profile)
+    event_list = Event.objects.all()
     print(event_list)
     return render(request,'event_list_layout.html',{'event_list':event_list})
 
@@ -84,9 +86,10 @@ def update_event(request,pk):
 @user_passes_test(is_admin)
 def delete_event(request,pk):
      
-    user=request.user
-    profile  =Profile.objects.get(user=user)
-    event=get_object_or_404(Event,pk=pk,user=profile)
+    # user=request.user
+    # profile  =Profile.objects.get(user=user)
+    # event=get_object_or_404(Event,pk=pk,user=profile)
+    event=get_object_or_404(Event,pk=pk)
     
     
     if request.method == 'POST':
