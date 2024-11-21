@@ -1,0 +1,61 @@
+{% load static %}
+<meta name="description" content="">
+    <meta name="author" content="Tooplate">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>EventEase</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl-carousel.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/tooplate-artxibition.css' %}">
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Sr_No</th>
+        <th scope="col">Event Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Event Capacity</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for data in event_data %} 
+      <tr>
+        
+        <th scope="row">{{ forloop.counter}}</th>
+       
+        <td>{{data.title}}</td>
+        <td>{{data.date}}</td>
+        <td>{{data.capacity}}</td>
+        
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script src="{% static 'js/custom.js' %}"></script>
+
+  <script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/imgfix.min.js' %}"></script> 
+    <script src="{% static 'js/mixitup.js' %}"></script> 
+    <script src="{% static 'js/accordions.js' %}"></script>
+    <script src="{% static 'js/owl-carousel.js' %}"></script>
+    
+    <!-- Global Init -->
+    <script src="{% static 'js/custom.js' %}"></script>

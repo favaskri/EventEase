@@ -19,6 +19,14 @@ def is_admin(user):
 def index(request):
     return render(request,'index.html')
 
+def admin_event_list(request):
+    event_data=Event.objects.prefetch_related('ticket_set', 'user__user').all()
+    context={
+        'event_data':event_data
+    }
+    print(context)
+    return render(request,'layout_admin_event_list.html',context)
+
 @login_required
 @user_passes_test(is_admin)
 def create_event(request):
