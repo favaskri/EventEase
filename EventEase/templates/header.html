@@ -10,8 +10,12 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="{% url 'index' %}" class="active">Home</a></li>
-                        <li><a href="{% url 'display_event' %}">Shows&Events</a></li> 
+                        <li><a href="{% url 'display_event' %}">Shows&Events</a></li>
+                        
+                        {% if user.is_authenticated and user.is_staff %}
+                        
                         <li><a href="{% url 'create_event' %}">Plan Event</a></li>
+                        {% endif %}
                         <li><a href="{% url 'tickets' %}">Tickets</a></li> 
                         <!-- Conditional display of Login/Logout and username -->
                         

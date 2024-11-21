@@ -8,7 +8,8 @@
                 
                 
                       <div class="main-dark-button">
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and user.is_staff %}
+
                           <a href="{% url 'event_list' %}">Update Event </a>
                         {% endif %}
                       </div>

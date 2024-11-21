@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Event,Profile
 from .forms import EventForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponseForbidden
 
 
 
@@ -10,10 +11,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 
+
+def is_admin(user):
+    return user.is_staff
+
 def index(request):
     return render(request,'index.html')
 
 @login_required
+@user_passes_test(is_admin)
 def create_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST,request.FILES)
@@ -50,6 +56,7 @@ def event_display(request):
 
 
 @login_required
+@user_passes_test(is_admin)
 def event_list(request):
     # Retrieve all venue requests (events) from the database
     user=request.user
@@ -58,6 +65,7 @@ def event_list(request):
     print(event_list)
     return render(request,'event_list_layout.html',{'event_list':event_list})
 
+@user_passes_test(is_admin)
 def update_event(request,pk):
     event=get_object_or_404(Event,pk=pk)
     if request.method == 'POST':
@@ -73,7 +81,7 @@ def update_event(request,pk):
     return render(request, 'update_event_layout.html', {'form': form})
 
 
-
+@user_passes_test(is_admin)
 def delete_event(request,pk):
      
     user=request.user

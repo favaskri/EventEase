@@ -23,9 +23,17 @@
         </div>
     {% endfor %}
     {% endif %}
-        <form method="post" action="">
+    
+
+    
+    <form method="post" action="{% url 'login_registration' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Renders the form fields: username, email, password1, password2 -->
+            
+
+            {{ form.as_p }}
+
+            
+            <input type="hidden" name="debug_test" value="true">
             <button type="submit">Register</button>
         </form>
         <p class="redirect-link">
