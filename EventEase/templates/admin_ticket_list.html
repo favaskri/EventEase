@@ -20,19 +20,19 @@
       <tr>
         <th scope="col">Sr_No</th>
         <th scope="col">Event Name</th>
-        <th scope="col">Date</th>
+        <th scope="col">Ticket Price</th>
         <th scope="col">Event Capacity</th>
         <th scope="col">Event Location</th>
       </tr>
     </thead>
     <tbody>
-        {% for data in event_data %} 
+      <P> HAI TICKET </P>
+        {% for data in ticket_data %} 
       <tr>
         
         <th scope="row">{{ forloop.counter}}</th>
-       
-        <td>{{data.title}}</td>
-        <td>{{data.date}}</td>
+       <td>{{data.title}}</td>
+        <td>{{data.ticket_price}}</td>
         <td>{{data.capacity}}</td>
         <td>{{data.location}}</td>
         

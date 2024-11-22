@@ -24,8 +24,16 @@ def admin_event_list(request):
     context={
         'event_data':event_data
     }
-    print(context)
+   
     return render(request,'layout_admin_event_list.html',context)
+
+def admin_ticket_list(request):
+    ticket_data=Event.objects.prefetch_related('ticket_set', 'user__user').all()
+    context={
+        'ticket_data':ticket_data
+    }
+    print(context)
+    return render(request,'layout_admin_ticket_list.html',context)
 
 @login_required
 @user_passes_test(is_admin)
