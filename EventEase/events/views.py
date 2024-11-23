@@ -4,6 +4,10 @@ from .forms import EventForm
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseForbidden
+from tickets.models import Ticket
+from django.db.models import Count
+
+
 
 
 
@@ -34,6 +38,18 @@ def admin_ticket_list(request):
     }
     print(context)
     return render(request,'layout_admin_ticket_list.html',context)
+
+@login_required
+@user_passes_test(is_admin)
+def admin_users_list(request):
+    # Aggregate ticket counts for each user and event
+    ticket_summary = (
+        Ticket.objects.values('user__username', 'event__title')
+        .annotate(tickets_purchased=Count('id'))
+        .order_by('user__username', 'event__title')
+    )
+
+    return render(request, 'layout_admin_users_list.html', {'ticket_summary': ticket_summary})
 
 @login_required
 @user_passes_test(is_admin)
@@ -114,6 +130,7 @@ def delete_event(request,pk):
         return redirect('event_list')
       
     return redirect('event_list')
+
     
 
 

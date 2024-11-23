@@ -14,14 +14,14 @@ def tickets(request):
 
     return render(request, 'tickets_layout.html' )
 
-
+@login_required
 def purchase_tickets(request, pk):
     event = get_object_or_404(Event, pk=pk)
     return render(request, 'purchase_ticket_layout.html', {'event_ticket': event})
 
 
 
-@login_required
+
 def process_purchase(request, pk):
     event = get_object_or_404(Event, pk=pk)
     # quantity = 1  # Default quantity
