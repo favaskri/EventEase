@@ -13,8 +13,12 @@
     <title>Ticket Purchase Successful</title>
 </head>
 <body>
-    <h1 style="text-align: center; color: green;;">Purchase Successful!</h1>
-    <h3 style="text-align: center; color: rgb(222, 87, 87);">Your ticket ID is: {{ ticket_id }}</h3>
+    <h1 style="text-align: center; color: green;">Purchase Successful</h1>
+    <p style="text-align: center; color: rgb(222, 87, 87);">Tickets purchased: {{ quantity }}</p>
+    <p style="text-align: center; color: rgb(222, 87, 87);">Total price: ${{ total_price }}</p>
+    <p style="text-align: center; color: rgb(222, 87, 87);">Ticket IDs: {{ ticket_ids|join:", " }}</p>
+
+    
 </body>
 </html>
 

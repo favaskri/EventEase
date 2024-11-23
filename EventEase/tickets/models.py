@@ -1,5 +1,6 @@
 from django.db import models
 from events.models import Event
+from users.models import User
 from django.utils.timezone import now
 
 
@@ -7,12 +8,28 @@ from django.utils.timezone import now
 class Ticket(models.Model):
     
     ticket_type = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=10, decimal_places=2,null=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2,null=False,default=0.00)
     quantity_available = models.PositiveIntegerField(null=True, blank=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     total_price = models.DecimalField(max_digits=10, decimal_places=2,default=0.00)
     created_at = models.DateTimeField(default=now)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,default=1)
+    ticket_remaining=models.IntegerField(null=True,blank=True)
+
+    def save(self ,*args,**kwargs):
+        if self.event.available_tickets<=0:
+            raise ValueError("No tickets available for this event!")
+        # self.event.available_tickets-=1
+        # self.event.save()
+
+        self.ticket_remaining=self.event.available_tickets
+
+        # Now call the parent class's save method to save the ticket instance itself
+        super().save(*args, **kwargs)
+
+
+    
 
 
     def __str__(self):

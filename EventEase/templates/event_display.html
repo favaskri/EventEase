@@ -40,7 +40,7 @@
                                                             <div class="left-content">
                                                                 <h4>{{event.title}}</h4>
                                                                 <p>{{ event.description|truncatewords:15 }}</p>
-                                                                <form method="post" action="{% url 'purchase_tickets' event.pk %}"  enctype="multipart/form-data">
+                                                            <form method="post" action="{% url 'purchase_tickets' event.pk %}"  enctype="multipart/form-data">
                                                                     {% csrf_token %}
                                                                 
                                                                     <div class="main-dark-button">
@@ -73,7 +73,11 @@
                                                                     </li>
                                                                     <li>
                                                                         <i class="fa fa-users"></i> {{event.capacity}} <span>Total Guests Attending</span>
+                                                                        <div>
+                                                                            <i class="fa fa-users"></i> {{event.available_tickets}} <span> Available Tickets</span>
+                                                                        </div>
                                                                     </li>
+                                                                    
                                                                 </ul>
                                                             </div>
                                                         </div>

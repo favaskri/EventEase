@@ -13,6 +13,13 @@ class Event(models.Model):
     is_active = models.BooleanField(default=True)
     image = models.ImageField(upload_to='event_images/', null=True, blank=True) 
     capacity = models.PositiveIntegerField(default=0)
+    available_tickets = models.PositiveIntegerField(default=0) 
+
+    def save(self, *args, **kwargs):
+        # Ensure available_tickets is always updated with the current capacity
+        if not self.pk:  
+            self.available_tickets = self.capacity
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
