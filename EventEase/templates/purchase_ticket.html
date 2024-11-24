@@ -28,6 +28,7 @@
                                 {% csrf_token %}
                                 <div class="right-content">
                                     <div class="quantity buttons_added">
+
                                         <input type="button" value="-" class="minus" onclick="changeQuantity(-1)">
                                         <input type="number" 
                                                id="quantity" 
@@ -40,23 +41,36 @@
                                                class="input-text qty text">
                                         <input type="button" value="+" class="plus" onclick="changeQuantity(1)">
                                     </div>
+                                    
+                                    
+                                    
                                     <p>Ticket Price: <span id="ticket-price" data-price="{{ event_ticket.ticket_price }}">{{ event_ticket.ticket_price }}</span></p>
                                     <!-- <p>Total Price: <span id="total-price">${{ event_ticket.ticket_price }}</span></p> -->
                                 </div>
                                 <!-- <div class="main-dark-button">
                                     <button type="button" onclick="submitForm()">Purchase Tickets</button>
                                 </div> -->
-                                <h4 span id="total-price">Total Price: ${{ event_ticket.ticket_price }}</h4>
-                                <p></p>
-                            <!-- <h4>Total: ${% calculate_total event_ticket.ticket_price quantity|default:0  %}</h4> -->
-                            <div class="main-dark-button">
-                                <button type="button" onclick="submitForm()">Purchase Tickets</button>
-                            </div>
-                            <!-- <div class="main-dark-button" ><a href="{% url 'ticket_success' event_ticket.pk %}"  onclick="submitForm()">Purchase Tickets</a></div> -->
-                        </div>
-                        <div class="warn">
-                            <p>*You Can Only Buy 10 Tickets For This Show</p>
-                        </div>
+                                
+                                <!-- <h4>Total Price: <span id="total-price">${{ event_ticket.ticket_price }}</span></h4> -->
+                                
+                                <div class="total">
+                                    <h4  id="total-price">Total Price: ${{ event_ticket.ticket_price|floatformat:2 }}</h4>
+                                    <div class="main-dark-button"><a style="color: aliceblue;" type="button" onclick="submitForm()" >Purchase Tickets</a></div>
+                                </div>
+                                
+                                <!-- <h4>Total Price: <span id="total-price">$123.45</span></h4> -->
+
+
+                                
+                                <!-- <h4>Total: ${% calculate_total event_ticket.ticket_price quantity|default:0  %}</h4> -->
+                                <!-- <div class="main-dark-button">
+                                    <button type="button" onclick="submitForm()">Purchase Tickets</button>
+                                </div> -->
+                                <!-- <div class="main-dark-button" ><a href="{% url 'ticket_success' event_ticket.pk %}"  onclick="submitForm()">Purchase Tickets</a></div> -->
+                                </div>
+                                <div class="warn">
+                                    <p>*You Can Only Buy 10 Tickets For This Show</p>
+                                </div>
                             </form>
                             
                             
@@ -75,13 +89,44 @@
             </div>
             
         </div>
+
     </div>
 
 
 
     
     
+    <!-- <script>
+    function changeQuantity(change) {
+        // Get the quantity input element
+        const quantityInput = document.getElementById('quantity');
+        
+        // Parse the current value
+        let currentValue = parseInt(quantityInput.value);
     
+        // Calculate the new value
+        let newValue = currentValue + change;
+    
+        // Ensure the value stays within the min and max bounds
+        if (newValue < parseInt(quantityInput.min)) {
+            newValue = parseInt(quantityInput.min);
+        } else if (newValue > parseInt(quantityInput.max)) {
+            newValue = parseInt(quantityInput.max);
+        }
+    
+        // Set the new value
+        quantityInput.value = newValue;
+    
+        // Trigger the form submission
+        updateTotalPrice(newValue, ticketPrice)
+        // quantityInput.form.submit();
+    }
+    
+
+
+    
+</script> -->
+
 
     
 
