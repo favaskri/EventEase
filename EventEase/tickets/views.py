@@ -78,7 +78,24 @@ def process_purchase(request, pk):
 
 
 
+
+
+# from .models import Ticket
+
 def ticket_success(request, ticket_ids):
     ticket_ids_list = ticket_ids.split(',')
+    print("Ticket IDs:", ticket_ids_list)
 
-    return render(request, 'ticket_success.html',  {'ticket_ids': ticket_ids_list})
+    # Fetch all tickets based on the IDs
+    tickets = Ticket.objects.filter(id__in=ticket_ids_list)
+    print("Fetched Tickets:", tickets)
+
+    # Check if tickets have valid prices
+    for ticket in tickets:
+        print(f"Ticket {ticket.id} Price: {ticket.price}")
+
+    # Calculate the total price
+    total_price = sum(float(ticket.price) for ticket in tickets)
+
+    # Pass the total price to the template
+    return render(request, 'ticket_success.html', {'ticket_ids': ticket_ids_list, 'total_price': total_price})

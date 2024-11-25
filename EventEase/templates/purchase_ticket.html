@@ -47,26 +47,13 @@
                                     <p>Ticket Price: <span id="ticket-price" data-price="{{ event_ticket.ticket_price }}">{{ event_ticket.ticket_price }}</span></p>
                                     <!-- <p>Total Price: <span id="total-price">${{ event_ticket.ticket_price }}</span></p> -->
                                 </div>
-                                <!-- <div class="main-dark-button">
-                                    <button type="button" onclick="submitForm()">Purchase Tickets</button>
-                                </div> -->
-                                
-                                <!-- <h4>Total Price: <span id="total-price">${{ event_ticket.ticket_price }}</span></h4> -->
                                 
                                 <div class="total">
                                     <h4  id="total-price">Total Price: ${{ event_ticket.ticket_price|floatformat:2 }}</h4>
                                     <div class="main-dark-button"><a style="color: aliceblue;" type="button" onclick="submitForm()" >Purchase Tickets</a></div>
                                 </div>
                                 
-                                <!-- <h4>Total Price: <span id="total-price">$123.45</span></h4> -->
-
-
                                 
-                                <!-- <h4>Total: ${% calculate_total event_ticket.ticket_price quantity|default:0  %}</h4> -->
-                                <!-- <div class="main-dark-button">
-                                    <button type="button" onclick="submitForm()">Purchase Tickets</button>
-                                </div> -->
-                                <!-- <div class="main-dark-button" ><a href="{% url 'ticket_success' event_ticket.pk %}"  onclick="submitForm()">Purchase Tickets</a></div> -->
                                 </div>
                                 <div class="warn">
                                     <p>*You Can Only Buy 10 Tickets For This Show</p>
