@@ -23,9 +23,9 @@ def purchase_tickets(request, pk):
 
 
 def process_purchase(request, pk):
+    
     event = get_object_or_404(Event, pk=pk)
-    # quantity = 1  # Default quantity
-    # total_price = event.ticket_price  # Default total price
+    
 
     if request.method == 'POST':
         quantity = int(request.POST.get('quantity', 1))
@@ -38,7 +38,7 @@ def process_purchase(request, pk):
         
         total_price = event.ticket_price * quantity
 
-        
+        # l love sssss
 
         if event.available_tickets < 0:  
             event.available_tickets = 0

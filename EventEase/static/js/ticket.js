@@ -46,7 +46,7 @@ function changeQuantity(change, ticketPrice) {
 
     quantityInput.value = newValue;
 
-    // Call updateTotalPrice with the new quantity
+    // Call updateTotalPrice with the new  quantity
     updateTotalPrice(newValue, ticketPrice);
 }
 
