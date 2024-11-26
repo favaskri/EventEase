@@ -38,7 +38,7 @@ def process_purchase(request, pk):
         
         total_price = event.ticket_price * quantity
 
-        # l love sssss
+        
 
         if event.available_tickets < 0:  
             event.available_tickets = 0
