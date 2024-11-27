@@ -15,7 +15,7 @@
 </head>
 <div class="center-content">
     <div class="login-container">
-        <h2>User registration</h2>
+        <h2>Admin Register</h2>
         {% if messages %}
     {% for message in messages %}
         <div class="alert alert-success">
@@ -26,7 +26,7 @@
     
 
     
-    <form method="post" action="{% url 'user_register' %}" enctype="multipart/form-data">
+    <form method="post" action="{% url 'admin_register' %}" enctype="multipart/form-data">
             {% csrf_token %}
             
 
@@ -37,7 +37,7 @@
             <button type="submit">Register</button>
         </form>
         <p class="redirect-link">
-            Already have an account? <a href="{% url 'login' %}">Login here</a>
+            Already have an account? <a href="{% url 'admin_login' %}">Login here</a>
         </p>
     </div>
 </div>

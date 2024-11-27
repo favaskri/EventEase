@@ -2,7 +2,7 @@
 {% extends 'blank_layout.html' %}
 {% load static %}
 
-{% block user_login %}
+{% block admin_login %}
 {% load static %}
 
 <header class="header-area header-sticky">
@@ -37,7 +37,7 @@
 <!-- Centered Login Content Wrapper -->
 <div class="center-content">
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Admin Login</h2>
         {% if form.errors %}
             <p class="error-message">Invalid username or password. Please try again.</p>
         {% endif %}
@@ -55,7 +55,7 @@
             <button type="submit">Login</button>
         </form>
         
-        <p>Don’t have an account? <a href="{% url 'user_register' %}">Sign up here</a>.</p>
+        <p>Don’t have an account? <a href="{% url 'admin_register' %}">Sign up here</a>.</p>
         <!-- Your login form here -->
     </div>
 </div>
@@ -64,7 +64,7 @@
 
 
 
-{% endblock user_login %}
+{% endblock  %}
 {% block footer %}
 {% include 'footer.html' %}
 {% endblock footer %}

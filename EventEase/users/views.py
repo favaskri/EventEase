@@ -1,13 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login,logout
 from django.contrib import messages  # Import the messages module
-from .forms import RegistrationForm
+from .user_forms import UserRegistrationForm
 from django.contrib.auth import views as auth_views
 from .models import Profile
+from .admin_forms import AdminRegistrationForm
+from django.contrib.auth.views import LoginView
+from .admin_forms import AdminLoginForm
+
 
 class CustomLoginView(auth_views.LoginView):
     print('login done ')
     template_name = 'login.html'
+
+
+
+class AdminLoginView(LoginView):
+    template_name = 'admin_login.html'
+    authentication_form = AdminLoginForm
+
 
 def custom_logout(request):
     logout(request)
@@ -15,40 +26,30 @@ def custom_logout(request):
 
 
 
+def admin_login(request):
+    return render(request,'admin_login.html')
 
-def register(request):
-    print("Register view called")  # Debug print
 
+
+def user_registration_view(request):
     if request.method == 'POST':
-        print("POST method detected")
-        print(f"POST data: {request.POST}")
-
-        form = RegistrationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            print("Form is valid")  # Debug print
-            user = form.save()
-            print("User before saving:", user)
-
-            phone_number = form.cleaned_data.get('phone_number')
-            user_role = form.cleaned_data.get('role')
-
-            print(f"User role: {user_role}, Phone number: {phone_number}")  # Debug print
-
-
-            # Save the phone number to the Profile model associated with the user
-            Profile.objects.create(user=user, phone_number=phone_number)
-
-            if user_role== 'Admin':
-                user.is_staff=True
-                user.save()
-
-            # Log the user in and add a success message
-            login(request, user)
-            messages.success(request, "You have successfully registered and are now logged in.")
-            return redirect('login_registration')
-        else:
-            print("Form errors:", form.errors)  # Debug errors
+            form.save()
+            return redirect('login')  # Redirect to login after successful registration
     else:
-        form = RegistrationForm()
-
+        form = UserRegistrationForm()
     return render(request, 'login_registration.html', {'form': form})
+
+def admin_registration_view(request):
+    if request.method == 'POST':
+        form = AdminRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_login')  # Redirect to admin login after successful registration
+    else:
+        form = AdminRegistrationForm()
+    return render(request, 'admin_login_registration.html', {'form': form})
+
+
+
