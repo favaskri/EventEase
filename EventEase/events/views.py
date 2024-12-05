@@ -74,7 +74,8 @@ def create_event(request):
 
 
 def event_display(request):
-    event_requests = Event.objects.all()
+    event_requests = Event.objects.all().order_by('date')
+    print(event_requests)
     paginator = Paginator(event_requests,4)  # 4 events per page
 
     page_number = request.GET.get('page')
