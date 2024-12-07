@@ -12,6 +12,8 @@ urlpatterns = [
     path('delete_event/<int:pk>/', views.delete_event, name='delete_event'),
     path('event_list/', views.event_list, name='event_list'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('admin_ticket_list/download/', views.download_ticket_report, name='download_ticket_report'),
+
     
     
 ]

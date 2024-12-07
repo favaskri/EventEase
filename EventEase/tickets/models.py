@@ -12,7 +12,7 @@ class Ticket(models.Model):
     ticket_type = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=2,null=False,default=0.00)
     quantity_available = models.PositiveIntegerField(null=True, blank=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, related_name='tickets', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     total_price = models.DecimalField(max_digits=10, decimal_places=2,default=0.00)
     created_at = models.DateTimeField(default=now)

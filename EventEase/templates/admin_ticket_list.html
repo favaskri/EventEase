@@ -23,6 +23,7 @@
         <th scope="col">Ticket Price</th>
         <th scope="col">Event Capacity</th>
         <th scope="col">Available Tickets</th>
+        <th scope="col">Tickets Revenue</th>
         <th scope="col">Event Location</th>
       </tr>
     </thead>
@@ -36,6 +37,7 @@
         <td>{{data.ticket_price}}</td>
         <td>{{data.capacity}}</td>
         <td>{{data.available_tickets}}</td>
+        <td>{{data.total_ticket_collection}}</td>
         <td>{{data.location}}</td>
         
         
@@ -43,6 +45,9 @@
       {% endfor %}
     </tbody>
   </table>
+
+  <a href="{% url 'download_ticket_report' %}" class="btn btn-dark btn-md">Download Report</a>
+
 
   <script src="{% static 'js/custom.js' %}"></script>
 

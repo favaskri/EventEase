@@ -6,6 +6,12 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseForbidden
 from tickets.models import Ticket
 from django.db.models import Count
+from django.db.models import Sum, F
+import openpyxl
+from openpyxl.styles import Alignment
+from django.http import HttpResponse
+
+
 
 
 
@@ -24,7 +30,7 @@ def index(request):
     return render(request,'index.html')
 
 def admin_event_list(request):
-    event_data=Event.objects.prefetch_related('ticket_set', 'user__user').all()
+    event_data=Event.objects.prefetch_related('tickets', 'user__user').all()
     context={
         'event_data':event_data
     }
@@ -32,7 +38,10 @@ def admin_event_list(request):
     return render(request,'layout_admin_event_list.html',context)
 
 def admin_ticket_list(request):
-    ticket_data=Event.objects.prefetch_related('ticket_set', 'user__user').all()
+    # ticket_data=Event.objects.prefetch_related('ticket_set', 'user__user').all()
+    ticket_data = Event.objects.prefetch_related('tickets', 'user__user').annotate(
+        total_ticket_collection=Sum(F('tickets__price'))
+    ).all()
     context={
         'ticket_data':ticket_data
     }
@@ -131,6 +140,47 @@ def delete_event(request,pk):
         return redirect('event_list')
       
     return redirect('event_list')
+
+
+def download_ticket_report(request):
+    # Fetch data
+    ticket_data = Event.objects.prefetch_related('tickets').annotate(
+        total_ticket_collection=Sum(F('tickets__price'))
+    ).all()
+
+    # Create an Excel workbook and sheet
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    sheet.title = "Ticket Report"
+
+    # Set the header
+    headers = ['Sr_NO','Event Name','Ticket Price','Event Capacity', 'Available Tickets' , 'Total Revenue (₹)','Event Location' ]
+    for col_num, header in enumerate(headers, 1):
+        sheet.cell(row=1, column=col_num).value = header
+        sheet.cell(row=1, column=col_num).alignment = Alignment(horizontal="center", vertical="center")
+
+    # Populate the data rows
+    for row_num, event in enumerate(ticket_data, start=2):
+        sheet.cell(row=row_num, column=1).value = row_num-1
+        sheet.cell(row=row_num, column=2).value = event.title
+        sheet.cell(row=row_num, column=3).value = event.ticket_price
+        sheet.cell(row=row_num, column=4).value = event.capacity
+        sheet.cell(row=row_num, column=5).value = event.available_tickets  # Total tickets
+        sheet.cell(row=row_num, column=6).value = event.total_ticket_collection or 0
+        sheet.cell(row=row_num, column=7).value = event.location  # Total collection
+
+    # Set response headers for downloading
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="ticket_report.xlsx"'
+
+    # Save the workbook to the response
+    workbook.save(response)
+
+    return response
+
+
 
     
 
